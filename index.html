@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script> 
+<link rel="stylesheet" type="text/css" href="style.css" />
+<title>Test</title>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          Header
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+      <div class="row row_btn">
+        <button>Sample</button>
+    </div>
+  <div>
+  <div class="container">
+      <div class="row">
+
+            <table id='table'> 
+            <tr> 
+                <th>Student</th> 
+                <th>English</th> 
+                <th>Maths</th> 
+                <th>Science</th> 
+            </tr> 
+            </table>
+            <script> 
+                $(document).ready(function () { 
+  
+                    $.getJSON("test.json",  
+                            function (data) { 
+                        var student = ''; 
+  
+                        $.each(data, function (key, value) { 
+  
+                            student += '<tr>'; 
+                            student += '<td>' +  
+                                value.UserName + '</td>'; 
+  
+                            student += '<td>' +  
+                                value.English + '</td>'; 
+  
+                            student += '<td>' +  
+                                value.Maths + '</td>'; 
+  
+                            student += '<td>' +  
+                                value.Science + '</td>'; 
+  
+                            student += '</tr>'; 
+                        }); 
+                          
+                        //INSERTING ROWS INTO TABLE  
+                        $('#table').append(student); 
+                    }); 
+                }); 
+            </script> 
+
+    </div>
+  <div>
+  <div class="container">
+      <div class="row row_sec">
+        <div class="col-md-12">
+          <ul id="valueContainer"></ul>
+        </div>
+      </div>
+  </div>
+  <div class="container">
+      <div class="row row_sec">
+  <button id="addButton">
+          Add Item
+      </button>
+    </div>
+  <div>
+  
+  <footer>
+    <div>
+      Footer
+    </div>
+    </footer>
+<script>
+        let itemCount = 1;
+
+        // Function to add a new value
+        function addValue() {
+            const container = 
+                      document.getElementById('valueContainer');
+            const newValueElement = 
+                      document.createElement('li');
+            newValueElement.textContent = 'Item ' + itemCount++;
+            container.appendChild(newValueElement);
+        }
+
+        // Function to remove a value
+        function removeValue(target) {
+            if (target.tagName === 'LI') {
+                target.remove();
+            }
+        }
+
+        // Event listener for adding values
+        document.getElementById(
+              'addButton').addEventListener(
+              'click', addValue);
+
+        // Event delegation for removing values
+        document.getElementById(
+              'valueContainer').addEventListener(
+              'click', function (event) {
+            removeValue(event.target);
+        });
+    </script>
+</body>
+</html>
